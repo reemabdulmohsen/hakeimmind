@@ -1,16 +1,2 @@
 # hakeimmind
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Hakeim Mind, which is an AI mindmap generator that creates a mindmap for any medical topic or disease you want from trusted resourcees, it has helped him save time through automating the process instead of doing it manually, and it catagorized the information in a systemic way so he can retain the information better
