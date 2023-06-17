@@ -47,23 +47,23 @@ class _HomeScreenState extends State<HomeScreen> {
       algorithm: BuchheimWalkerAlgorithm(builder,TreeEdgeRenderer(builder)),
       paint: Paint()
         ..color = Colors.black
-        ..strokeWidth = 2
+        ..strokeWidth = 1
         ..style = PaintingStyle.stroke,
       builder: (Node node) {
         // Create a fade-in animation for the node widget
         return Container(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(4.0),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
             border: Border.all(
               color: Colors.black, // Set the border color to black
-              width: 2.0, // Set the border width
+              width: 1.0, // Set the border width
             ),
           ),
           child: DefaultTextStyle(
             style: const TextStyle(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w100,
               fontSize: 15
             ),
             child: AnimatedTextKit(
@@ -97,12 +97,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
   String diseaseName = '';
-
+  var wait = false;
   void buildMindMap() async {
+    setState(() {
+      wait=true;
+    });
     try {
+
       final mindMapData = await MindMapService.fetchMindMapData(diseaseName);
 
       setState(() {
+        wait = false;
         mindMapWidget = _buildMindMapWidget(mindMapData);
       });
     } catch (e) {
@@ -179,15 +184,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           SingleChildScrollView(
-
-            child: Expanded(
-              flex: 2,
-              child: Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(16.0),
-                child: mindMapWidget ?? Container(),
-              ),
-            ),
+            child: !wait? Container(
+              color: Colors.white,
+              padding: EdgeInsets.all(16.0),
+              child: mindMapWidget ?? Container(),
+            ) : const Center(child: Text("please wait...",)),
           ),
         ],
       ),
